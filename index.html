@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohsin's AI BG Remover</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .custom-shadow { shadow-lg: 0 10px 15px -3px rgba(59, 130, 246, 0.3); }
+    </style>
+</head>
+<body class="bg-gray-950 text-white min-h-screen flex flex-col items-center justify-center p-4">
+
+    <div class="max-w-md w-full bg-gray-900 p-8 rounded-3xl shadow-2xl border border-gray-800">
+        <h1 class="text-3xl font-extrabold text-center mb-2 text-blue-500 tracking-tight">AI BG Remover</h1>
+        <p class="text-gray-500 text-center mb-8 text-sm font-medium italic">Powered by Mohsin Karim</p>
+
+        <div class="space-y-6">
+            <div id="dropZone" class="border-2 border-dashed border-gray-700 rounded-2xl p-8 text-center hover:border-blue-500 hover:bg-gray-800 transition-all duration-300">
+                <input type="file" id="upload" class="hidden" accept="image/*">
+                <label for="upload" class="cursor-pointer">
+                    <div class="bg-blue-500/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                        </svg>
+                    </div>
+                    <span class="text-sm font-semibold text-gray-300">Upload Image Here</span>
+                </label>
+            </div>
+
+            <div id="previewContainer" class="hidden animate-fade-in">
+                <p class="text-xs text-blue-400 mb-2 uppercase font-bold tracking-tighter text-center">Image Selected</p>
+                <div class="relative group">
+                    <img id="previewImg" class="rounded-xl shadow-2xl mx-auto max-h-64 border-2 border-gray-800 transition group-hover:scale-[1.02]">
+                </div>
+                
+                <button onclick="processImage()" id="processBtn" class="w-full mt-6 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold py-4 rounded-2xl transition shadow-lg transform active:scale-95">
+                    Remove Background
+                </button>
+            </div>
+
+            <div id="loader" class="hidden text-center py-4">
+                <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500 border-gray-800 mx-auto mb-4"></div>
+                <p class="text-blue-400 font-medium animate-pulse">AI is working... 🚀</p>
+            </div>
+
+            <div id="resultContainer" class="hidden text-center bg-gray-800/50 p-6 rounded-2xl border border-blue-500/30">
+                <p class="text-blue-400 font-bold mb-6 flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"></path></svg>
+                    Ready for Download!
+                </p>
+                <a id="downloadBtn" class="w-full inline-block bg-white text-black font-black py-4 px-8 rounded-2xl hover:bg-gray-200 transition shadow-xl uppercase tracking-widest text-sm">
+                    Download Result
+                </a>
+                <button onclick="location.reload()" class="mt-4 text-gray-500 text-xs hover:text-white underline transition">Upload Another</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mt-12 text-gray-700 text-[10px] font-bold uppercase tracking-[0.3em]">
+        Design & Ownership &copy; Mohsin Karim
+    </footer>
+
+    <script>
+        const upload
